@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package orbit.yieldnft.v1;
+
+option go_package = "github.com/orbit-chain/orbit/x/yieldnft/types";
+
+import "cosmos/base/v1beta1/coin.proto";
+import "google/api/annotations.proto";
+
+service Msg {
+  rpc StakeAndMint(MsgStakeAndMint) returns (MsgStakeAndMintResponse);
+}
+
+// The chain handler must delegate and mint in one atomic state transition.
+message MsgStakeAndMint {
+  string delegator = 1;
+  string validator_address = 2;
+  cosmos.base.v1beta1.Coin amount = 3;
+  string nft_name = 4;
+  string nft_data = 5;
+}
+
+message MsgStakeAndMintResponse {
+  string nft_class_id = 1;
+  string nft_id = 2;
+}
+
+service Query {
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/orbit/yieldnft/v1/params";
+  }
+  rpc PositionsByOwner(QueryPositionsByOwnerRequest) returns (QueryPositionsByOwnerResponse) {
+    option (google.api.http).get = "/orbit/yieldnft/v1/positions/{owner}";
+  }
+}
+
+message QueryParamsRequest {}
+
+message QueryParamsResponse {
+  string chain_id = 1;
+  string stake_denom = 2;
+  string position_nft_class_id = 3;
+}
+
+message QueryPositionsByOwnerRequest {
+  string owner = 1;
+}
+
+message QueryPositionsByOwnerResponse {
+  repeated Position positions = 1;
+}
+
+message Position {
+  string nft_class_id = 1;
+  string nft_id = 2;
+  string validator_address = 3;
+  cosmos.base.v1beta1.Coin amount = 4;
+  uint64 created_height = 5;
+}

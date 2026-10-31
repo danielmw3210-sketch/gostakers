@@ -1,0 +1,24 @@
+{
+  "name": "GoStake Cosmos development",
+  "features": {
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.24"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "forwardPorts": [5173, 1317, 26657],
+  "portsAttributes": {
+    "5173": {
+      "label": "Orbit web client",
+      "onAutoForward": "openBrowser"
+    },
+    "1317": {
+      "label": "Cosmos REST API"
+    },
+    "26657": {
+      "label": "CometBFT RPC"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "orbit-yield-nft",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@cosmjs/proto-signing": "0.39.0",
+    "@cosmjs/stargate": "0.39.0",
+    "cosmjs-types": "0.11.0"
+  },
+  "devDependencies": {
+    "vite": "8.3.5"
+  }
+}
