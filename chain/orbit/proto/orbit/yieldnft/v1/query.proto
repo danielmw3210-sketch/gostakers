@@ -1,0 +1,50 @@
+syntax = "proto3";
+package orbit.yieldnft.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "cosmos/base/v1beta1/coin.proto";
+import "cosmos_proto/cosmos.proto";
+import "orbit/yieldnft/v1/params.proto";
+
+option go_package = "orbit/x/yieldnft/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/orbit/yieldnft/v1/params";
+  }
+
+  rpc PositionsByOwner(QueryPositionsByOwnerRequest) returns (QueryPositionsByOwnerResponse) {
+    option (google.api.http).get = "/orbit/yieldnft/v1/positions/{owner}";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  string chain_id = 1;
+  string stake_denom = 2;
+  string position_nft_class_id = 3;
+}
+
+message QueryPositionsByOwnerRequest {
+  string owner = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+}
+
+message QueryPositionsByOwnerResponse {
+  repeated Position positions = 1;
+}
+
+message Position {
+  string nft_class_id = 1;
+  string nft_id = 2;
+  string validator_address = 3 [(cosmos_proto.scalar) = "cosmos.ValidatorAddressString"];
+  cosmos.base.v1beta1.Coin amount = 4 [(gogoproto.nullable) = false];
+  uint64 created_height = 5;
+}

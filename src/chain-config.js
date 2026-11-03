@@ -17,7 +17,7 @@ if (!Number.isSafeInteger(gasLimit) || gasLimit <= 0) {
 }
 
 export const chainConfig = Object.freeze({
-  chainId: env("VITE_COSMOS_CHAIN_ID", "orbit-local-1"),
+  chainId: env("VITE_COSMOS_CHAIN_ID", "orbit"),
   chainName: env("VITE_COSMOS_CHAIN_NAME", "Orbit Local"),
   rpc: env("VITE_COSMOS_RPC", "http://127.0.0.1:26657"),
   rest: env("VITE_COSMOS_REST", "http://127.0.0.1:1317"),
@@ -28,7 +28,7 @@ export const chainConfig = Object.freeze({
   gasPrice: env("VITE_COSMOS_GAS_PRICE", "0.025uorbit"),
   gasLimit,
   keplrChainInfo: {
-    chainId: env("VITE_COSMOS_CHAIN_ID", "orbit-local-1"),
+    chainId: env("VITE_COSMOS_CHAIN_ID", "orbit"),
     chainName: env("VITE_COSMOS_CHAIN_NAME", "Orbit Local"),
     rpc: env("VITE_COSMOS_RPC", "http://127.0.0.1:26657"),
     rest: env("VITE_COSMOS_REST", "http://127.0.0.1:1317"),

@@ -1,0 +1,17 @@
+syntax = "proto3";
+package orbit.yieldnft.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "orbit/yieldnft/v1/params.proto";
+
+option go_package = "orbit/x/yieldnft/types";
+
+// GenesisState defines the yieldnft module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}

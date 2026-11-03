@@ -1,0 +1,15 @@
+syntax = "proto3";
+package orbit.yieldnft.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "orbit/x/yieldnft/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "orbit/x/yieldnft/Params";
+  option (gogoproto.equal) = true;
+
+  string stake_denom = 1;
+}

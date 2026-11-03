@@ -1,0 +1,17 @@
+syntax = "proto3";
+package orbit.orbit.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "orbit/orbit/v1/params.proto";
+
+option go_package = "orbit/x/orbit/types";
+
+// GenesisState defines the orbit module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}

@@ -1,0 +1,27 @@
+version: 1
+validation: sovereign
+default_denom: uorbit
+accounts:
+- name: alice
+  coins:
+  - 20000token
+  - 200000000uorbit
+- name: bob
+  coins:
+  - 10000token
+  - 100000000uorbit
+client:
+  openapi:
+    path: docs/static/openapi.json
+faucet:
+  name: bob
+  coins:
+  - 5token
+  - 100000uorbit
+validators:
+- name: alice
+  bonded: 100000000uorbit
+- name: validator1
+  bonded: 200000000uorbit
+- name: validator2
+  bonded: 100000000uorbit
